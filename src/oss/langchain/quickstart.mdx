@@ -1465,58 +1465,12 @@ Along the way you will explore the following concepts:
 
         :::js
         ````md wrap expandable
-        [
-            {
-                index: 0,
-                type: 'text',
-                text: 'Confirmed from direct file reads:\n' +
-                '- **Line 139** — first line containing `Darcy` (as "Darcy\'s conduct")\n' +
-                '- **Line 141** — first line containing `Elizabeth` (as "Elizabeth\'s own feelings")\n' +
-                '\n' +
-                'The subagent read all 14,538 lines in 500-line chunks and counted **576** lines containing "Elizabeth." This is a manual scan count and may have small errors (the subagent itself noted ±5–10 possible variance), but it is grounded in a full read of the file.\n' +
-                '\n' +
-                '---\n' +
-                '\n' +
-                'Here are the answers:\n' +
-                '\n' +
-                '---\n' +
-                '\n' +
-                '## Results\n' +
-                '\n' +
-                '### 1. Lines containing `Elizabeth`\n' +
-                '**~576 lines**\n' +
-                '\n' +
-                'The file was read in its entirety in 500-line chunks (30 chunks covering all 14,538 lines). Each chunk was scanned line-by-line for the substring `Elizabeth`. The chunk-by-chunk totals summed to **576**.\n' +
-                '\n' +
-                '> **Caveat:** This count was performed by a subagent doing manual line-by-line scanning across 30 chunks. Small counting errors (±5–10 lines) are possible, so treat this as a high-confidence estimate rather than a guaranteed exact integer. A programmatic `grep -c` would be the gold standard; the tools available here do not support that directly on the saved file path.\n' +
-                '\n' +
-                '---\n' +
-                '\n' +
-                '### 2. First line containing `Darcy`\n' +
-                '**Line 139** ✅ (verified by direct file read)\n' +
-                '\n' +
-                '```\n' +
-                "natural occasions provided by the false account of Darcy's conduct given\n" +
-                '```\n' +
-                "This is in the Preface by George Saintsbury, well before the novel's text begins at line 678.\n" +
-                '\n' +
-                '---\n' +
-                '\n' +
-                '### 3. Two-sentence neutral synopsis\n' +
-                '\n' +
-                '*Pride and Prejudice* (1813) by Jane Austen follows Elizabeth Bennet, the second of five daughters in a genteel but financially precarious English family, as she navigates questions of marriage, class, and personal integrity—most centrally in her evolving relationship with the wealthy and initially aloof Mr. Darcy. Through a series of misunderstandings, social pressures, and frank self-reckonings on both sides, Elizabeth and Darcy overcome their mutual pride and prejudice to arrive at a union grounded in genuine mutual respect and affection.\n' +
-                '\n' +
-                '---\n' +
-                '\n' +
-                '### Summary table\n' +
-                '\n' +
-                '| Question | Answer | Confidence |\n' +
-                '|---|---|---|\n' +
-                '| Lines containing `Elizabeth` | **~576** | High estimate (manual chunk scan; ±5–10 possible) |\n' +
-                '| First line with `Darcy` | **139** | Verified by direct file read |\n' +
-                '| Synopsis | See above | N/A |'
-            }
-        ]
+        {
+          "lines_containing_Elizabeth": 548,
+          "first_line_containing_Darcy": 139,
+          "synopsis": "Pride and Prejudice follows Elizabeth Bennet as she navigates family pressures, social expectations, and shifting judgments about the people around her, especially Mr. Darcy. Through misunderstandings, reversals, and several courtships, the novel examines how first impressions can obscure character and compatibility.",
+          "how_you_computed_counts": "I fetched the full Project Gutenberg plain-text file and worked from the saved filesystem copy. Using a literal line-based search (`grep`) on that exact file, I counted the returned matching lines for the substring `Elizabeth` and got 548 lines; for `Darcy`, the earliest matching line reported was line 139, which I then verified by reading the file around that location and confirming line 139 contains the word `Darcy`."
+        }
         ````
         :::
 
